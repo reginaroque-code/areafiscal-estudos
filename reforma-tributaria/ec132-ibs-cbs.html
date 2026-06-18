@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC 132/2023 — Reforma Tributária · Legislação Esquematizada</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f4f6fb;--surface:#fff;--border:#e2e8f0;
+  --text:#1e293b;--muted:#64748b;
+  --accent:#1e3a8a;--accent-lt:#eff6ff;
+  --green:#166534;--green-lt:#f0fdf4;--green-bd:#bbf7d0;
+  --red:#991b1b;--red-lt:#fef2f2;--red-bd:#fecaca;
+  --amber:#92400e;--amber-lt:#fffbeb;--amber-bd:#fde68a;
+  --blue:#1e3a8a;--blue-lt:#eff6ff;--blue-bd:#bfdbfe;
+  --tag-fcc:#b45309;--tag-cespe:#065f46;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--accent);color:#fff;padding:20px 28px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+header h1{font-size:1.1rem;font-weight:700}
+header .sub{font-size:.75rem;color:#bfdbfe;margin-top:3px}
+.btn-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button{padding:5px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:600;transition:.2s}
+.btn-expand{background:#f0c855;color:#1e1b4b}
+.btn-collapse{background:#e0e7ff;color:#3730a3}
+.layout{display:flex;gap:0;max-width:1300px;margin:0 auto}
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:72px;height:calc(100vh - 72px);overflow-y:auto;padding:20px 14px;border-right:1px solid var(--border);background:#f8fafc}
+.sidebar h3{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+.sidebar a{display:block;font-size:.8rem;color:var(--accent);text-decoration:none;padding:4px 8px;border-radius:4px;margin-bottom:2px;transition:.15s}
+.sidebar a:hover{background:var(--accent-lt)}
+main{flex:1;padding:28px 28px 60px;min-width:0}
+.sec-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:28px 0 10px;border-bottom:2px solid var(--accent);margin-bottom:16px}
+.artigo{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.art-head{display:flex;align-items:center;gap:8px;padding:14px 18px;cursor:pointer;user-select:none;flex-wrap:wrap}
+.art-head:hover{background:#f8fafc}
+.art-num{font-size:.85rem;font-weight:700;color:var(--accent);white-space:nowrap}
+.art-titulo{font-size:.9rem;font-weight:600;flex:1}
+.art-body{padding:0 18px 18px;display:none}
+.art-body.open{display:block}
+.chevron{margin-left:auto;font-size:.8rem;color:var(--muted);transition:.2s}
+.open-head .chevron{transform:rotate(180deg)}
+.tag{font-size:.67rem;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.tag.alta{background:#fee2e2;color:var(--red)}
+.tag.med{background:#fef3c7;color:var(--amber)}
+.tag.new{background:var(--green-lt);color:var(--green);border:1px solid var(--green-bd)}
+.lei{background:#f8fafc;border-left:3px solid var(--accent);border-radius:0 6px 6px 0;padding:14px 16px;margin:12px 0;font-size:.88rem}
+.caput{margin-bottom:8px}
+.par{display:block;margin:6px 0 4px 12px;font-size:.87rem}
+.inc{display:block;margin:4px 0 4px 24px;font-size:.86rem}
+.kw-blue{color:var(--blue);font-weight:600}
+.kw-green{color:var(--green);font-weight:600}
+.kw-red{color:var(--red);font-weight:600}
+.kw-gold{color:var(--amber);font-weight:600}
+.nota{border-radius:7px;padding:11px 14px;margin:10px 0;font-size:.84rem}
+.nota.vermelho{background:var(--red-lt);border:1px solid var(--red-bd);color:var(--red)}
+.nota.verde{background:var(--green-lt);border:1px solid var(--green-bd);color:var(--green)}
+.nota.amber{background:var(--amber-lt);border:1px solid var(--amber-bd);color:var(--amber)}
+.nota.azul{background:var(--blue-lt);border:1px solid var(--blue-bd);color:var(--blue)}
+.banca-fcc{background:#fef3c7;color:var(--tag-fcc);font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:4px;border:1px solid #fde68a}
+.banca-cespe{background:var(--green-lt);color:var(--tag-cespe);font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:4px;border:1px solid var(--green-bd)}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.83rem}
+th{background:var(--accent);color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even) td{background:#f8fafc}
+.timeline{display:flex;gap:0;margin:14px 0;overflow-x:auto}
+.tl-item{flex:1;min-width:110px;padding:10px;background:var(--accent-lt);border:1px solid var(--blue-bd);border-right:none;text-align:center;font-size:.78rem}
+.tl-item:last-child{border-right:1px solid var(--blue-bd)}
+.tl-year{font-weight:700;color:var(--accent);font-size:.95rem;display:block}
+@media(max-width:768px){.layout{flex-direction:column}.sidebar{width:100%;position:static;height:auto;border-right:none;border-bottom:1px solid var(--border)}main{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>EC 132/2023 — Reforma Tributária · Legislação Esquematizada</h1>
+  <div class="sub">Arts. 149-B · 149-C · 156-A · 156-B · 195,V e §§15-19 · 225,§1º,VIII | Área Fiscal · Concursos Públicos</div>
+  <div class="btn-row">
+    <button class="btn-expand" onclick="toggleAll(true)">▼ Expandir tudo</button>
+    <button class="btn-collapse" onclick="toggleAll(false)">▲ Recolher tudo</button>
+  </div>
+</header>
+<div class="layout">
+<nav class="sidebar">
+  <h3>Artigos</h3>
+  <a href="#art149b">Art. 149-B — Identidade IBS/CBS</a>
+  <a href="#art149c">Art. 149-C — Compras Governamentais</a>
+  <a href="#art156a">Art. 156-A — IBS</a>
+  <a href="#art156b">Art. 156-B — Comitê Gestor</a>
+  <a href="#art195">Art. 195,V e §§15-19 — CBS</a>
+  <a href="#art225">Art. 225,§1º,VIII — Biocombustíveis</a>
+  <h3 style="margin-top:18px">Extras</h3>
+  <a href="#quadro">Quadro Comparativo</a>
+  <a href="#timeline">Cronograma</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+</nav>
+<main>
+<div class="sec-title">Capítulo I — Identidade Estrutural IBS e CBS</div>
+<div class="artigo" id="art149b">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 149-B</span>
+    <span class="art-titulo">Identidade Estrutural entre IBS e CBS</span>
+    <span class="tag alta">🔥 Alta Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 149-B.</strong> O imposto previsto no art. 156-A e a contribuição prevista no art. 195, V, terão:</p>
+      <span class="inc">I – <span class="kw-blue">idênticos fatos geradores</span>, bases de cálculo, hipóteses de não incidência e sujeitos passivos;</span>
+      <span class="inc">II – <span class="kw-blue">mesmas imunidades</span>;</span>
+      <span class="inc">III – <span class="kw-blue">regimes diferenciados, específicos ou favorecidos</span> de tributação idênticos, quando for o caso;</span>
+      <span class="inc">IV – <span class="kw-blue">legislação uniforme</span> em todo o território nacional, ressalvadas as alíquotas próprias fixadas por cada ente federativo.</span>
+      <span class="par"><strong>Parágrafo único.</strong> As normas relativas ao IBS e à CBS serão estabelecidas pela mesma lei complementar.</span>
+    </div>
+    <div class="nota azul"><strong>📌 Ponto-chave:</strong> IBS e CBS são "gêmeos tributários" — mesma base, mesmo fato gerador, mesmas imunidades. A diferença é a <strong>competência</strong>: IBS = Estados/DF/Municípios · CBS = União.</div>
+    <div class="nota vermelho"><strong>⚠️ Pegadinha CESPE:</strong> A identidade estrutural <span class="kw-red">NÃO significa alíquota única</span>. Cada ente fixa sua própria alíquota do IBS.</div>
+    <div class="nota amber"><strong>⚠️ Pegadinha FCC:</strong> A legislação uniforme refere-se às <span class="kw-gold">regras gerais</span> (lei complementar), não às alíquotas. <span class="banca-fcc">FCC</span></div>
+  </div>
+</div>
+<div class="artigo" id="art149c">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 149-C</span>
+    <span class="art-titulo">Compras Governamentais — Alíquota de Referência</span>
+    <span class="tag med">⚡ Média Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 149-C.</strong> Nas operações com a administração pública direta e indireta, o IBS e a CBS serão cobrados à <span class="kw-blue">alíquota de referência</span>, vedada a diferenciação de alíquotas.</p>
+      <span class="par"><strong>§1º</strong> O adquirente será o <span class="kw-green">responsável pelo recolhimento</span> do IBS e da CBS.</span>
+      <span class="par"><strong>§2º</strong> Aplica-se aos fornecedores <span class="kw-blue">optantes pelo Simples Nacional</span>.</span>
+      <span class="par"><strong>§3º</strong> LC poderá prever <span class="kw-green">regime diferenciado de creditamento</span>.</span>
+    </div>
+    <div class="nota azul"><strong>📌 Reverse charge:</strong> O ente público que compra assume a responsabilidade pelo recolhimento.</div>
+    <div class="nota vermelho"><strong>⚠️ Pegadinha:</strong> Vedação à diferenciação <span class="kw-red">não significa imunidade</span>. O tributo é devido, apenas à alíquota de referência. <span class="banca-cespe">CESPE</span></div>
+  </div>
+</div>
+<div class="sec-title">Capítulo II — IBS: Imposto sobre Bens e Serviços</div>
+<div class="artigo" id="art156a">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 156-A</span>
+    <span class="art-titulo">IBS — Imposto sobre Bens e Serviços</span>
+    <span class="tag alta">🔥 Alta Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 156-A.</strong> Lei complementar instituirá imposto sobre bens e serviços de <span class="kw-blue">competência compartilhada entre os Estados, o Distrito Federal e os Municípios</span>.</p>
+      <span class="par"><strong>§1º</strong> Informado pelo princípio da <span class="kw-green">neutralidade</span>:</span>
+      <span class="inc">I – incide sobre operações com bens materiais ou imateriais, inclusive direitos, ou serviços;</span>
+      <span class="inc">II – incide sobre <span class="kw-blue">importações</span>;</span>
+      <span class="inc">III – <span class="kw-red">não incide</span> sobre <span class="kw-green">exportações</span>;</span>
+      <span class="inc">IV – <span class="kw-red">não integra</span> sua própria base — cobrança <span class="kw-blue">"por fora"</span>;</span>
+      <span class="inc">V – <span class="kw-blue">não cumulativo</span>;</span>
+      <span class="inc">VI – <span class="kw-blue">legislação única e uniforme</span> em todo o território;</span>
+      <span class="inc">VII – cobrado no <span class="kw-green">destino</span>;</span>
+      <span class="inc">X – cada ente fixa sua <span class="kw-blue">alíquota própria</span> por lei específica;</span>
+      <span class="inc">XI – Senado fixa <span class="kw-blue">alíquota de referência</span> por resolução.</span>
+    </div>
+    <div class="nota verde"><strong>✅ Mnemônico:</strong> <strong>D</strong>estino · <strong>N</strong>ão cumulativo · <strong>N</strong>ão integra base · <strong>L</strong>egislação única · <strong>E</strong>xportação imune · <strong>I</strong>mportação tributada → <strong>DNNLEI</strong></div>
+    <div class="nota vermelho"><strong>⚠️ FCC — mais cobrada:</strong> IBS <span class="kw-red">NÃO incide sobre exportações</span>. <span class="banca-fcc">FCC</span></div>
+    <div class="nota vermelho"><strong>⚠️ CESPE:</strong> IBS <span class="kw-red">NÃO integra sua própria base</span> — cobrança "por fora" (diferente do ICMS antigo). <span class="banca-cespe">CESPE</span></div>
+    <div class="nota amber"><strong>⚠️ Armadilha:</strong> Competência <span class="kw-gold">compartilhada</span> — não é de cada ente isoladamente. IBS <span class="kw-red">NÃO é federal</span>.</div>
+  </div>
+</div>
+<div class="sec-title">Capítulo III — Comitê Gestor do IBS</div>
+<div class="artigo" id="art156b">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 156-B</span>
+    <span class="art-titulo">Comitê Gestor do IBS (CGIBS)</span>
+    <span class="tag alta">🔥 Alta Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 156-B.</strong> O IBS será administrado por um <span class="kw-blue">Comitê Gestor</span>, integrado por representantes dos <span class="kw-green">Estados, DF e Municípios</span>.</p>
+      <span class="par"><strong>§1º</strong> Entidade pública sob <span class="kw-blue">regime especial</span>, com independência técnica, administrativa, orçamentária e financeira. Sede e foro no <span class="kw-green">Distrito Federal</span>.</span>
+      <span class="par"><strong>§2º</strong> Compete ao CGIBS: editar o <span class="kw-blue">regulamento único</span>; uniformizar interpretação; arrecadar e distribuir receitas; representar os entes.</span>
+      <span class="par"><strong>§3º</strong> Conflitos julgados pelo <span class="kw-blue">STJ</span>.</span>
+      <span class="par"><strong>§4º</strong> Decisões por <span class="kw-blue">maioria qualificada</span>.</span>
+    </div>
+    <div class="nota vermelho"><strong>⚠️ Pegadinhas do CGIBS:</strong> Sede no <span class="kw-red">DF</span> · Conflitos no <span class="kw-red">STJ</span> (não STF) · <span class="kw-red">NÃO é órgão da União</span>. <span class="banca-fcc">FCC</span> <span class="banca-cespe">CESPE</span></div>
+  </div>
+</div>
+<div class="sec-title">Capítulo IV — CBS e Biocombustíveis</div>
+<div class="artigo" id="art195">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 195, V e §§15-19</span>
+    <span class="art-titulo">CBS — Contribuição sobre Bens e Serviços</span>
+    <span class="tag alta">🔥 Alta Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 195, V –</strong> <span class="kw-blue">contribuição sobre bens e serviços</span>, nos termos de lei complementar.</p>
+      <span class="par"><strong>§15.</strong> Mesmo fato gerador, base de cálculo, imunidades e sujeitos passivos do IBS (art. 156-A).</span>
+      <span class="par"><strong>§16.</strong> <span class="kw-red">Não incide</span> sobre exportações; incide sobre importações.</span>
+      <span class="par"><strong>§17.</strong> Não cumulativa; cobrada "por fora".</span>
+      <span class="par"><strong>§18.</strong> Alíquota fixada em <span class="kw-blue">lei federal</span>.</span>
+    </div>
+    <div class="nota azul"><strong>📌 CBS = IVA Federal:</strong> Substitui PIS + Cofins. Competência da União. Gêmea do IBS.</div>
+    <div class="nota vermelho"><strong>⚠️ Pegadinha:</strong> CBS é <span class="kw-red">contribuição social</span> (art. 195), não imposto — mas tem mesmo fato gerador do IBS. <span class="banca-cespe">CESPE</span></div>
+  </div>
+</div>
+<div class="artigo" id="art225">
+  <div class="art-head" onclick="toggle(this)">
+    <span class="art-num">Art. 225, §1º, VIII</span>
+    <span class="art-titulo">Regime Fiscal Favorecido — Biocombustíveis</span>
+    <span class="tag med">⚡ Média Incidência</span>
+    <span class="tag new">✨ EC 132/2023</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="art-body">
+    <div class="lei">
+      <p class="caput"><strong>Art. 225, §1º, VIII.</strong> Incumbe ao Poder Público manter <span class="kw-green">regime fiscal favorecido</span> para os <span class="kw-blue">biocombustíveis</span> e para o <span class="kw-blue">hidrogênio de baixa emissão de carbono</span>, <span class="kw-gold">na forma de lei complementar</span>, garantindo tributação inferior à dos combustíveis fósseis.</p>
+    </div>
+    <div class="nota vermelho"><strong>⚠️ FCC:</strong> <span class="kw-red">NÃO cria isenção automática</span>. Depende de <span class="kw-red">lei complementar</span>. <span class="banca-fcc">FCC</span></div>
+    <div class="nota vermelho"><strong>⚠️ CESPE:</strong> "Regime fiscal favorecido" ≠ "imunidade tributária". <span class="banca-cespe">CESPE</span></div>
+  </div>
+</div>
+<div class="sec-title" id="quadro">Quadro Comparativo — IBS × CBS × IS</div>
+<table>
+  <tr><th>Critério</th><th>IBS</th><th>CBS</th><th>IS (Seletivo)</th></tr>
+  <tr><td>Natureza</td><td>Imposto</td><td>Contribuição Social</td><td>Imposto</td></tr>
+  <tr><td>Competência</td><td>Estados, DF e Municípios</td><td>União</td><td>União</td></tr>
+  <tr><td>Substitui</td><td>ICMS + ISS</td><td>PIS + Cofins</td><td>Extrafiscal (novo)</td></tr>
+  <tr><td>Exportações</td><td>Imune</td><td>Não incide</td><td>Não incide</td></tr>
+  <tr><td>Importações</td><td>Incide</td><td>Incide</td><td>Incide (se nocivo)</td></tr>
+  <tr><td>Base de cálculo</td><td>Por fora</td><td>Idêntica ao IBS</td><td>Específica</td></tr>
+  <tr><td>Não cumulativo</td><td>Sim</td><td>Sim</td><td>Não</td></tr>
+  <tr><td>Gestão</td><td>Comitê Gestor</td><td>Receita Federal</td><td>Receita Federal</td></tr>
+  <tr><td>Alíquota</td><td>Cada ente fixa a própria</td><td>Lei federal</td><td>Lei federal</td></tr>
+</table>
+<div class="sec-title" id="timeline">Cronograma de Transição — ADCT</div>
+<div class="timeline">
+  <div class="tl-item"><span class="tl-year">2026</span>Ano-teste: CBS 0,9% · IBS 0,1%</div>
+  <div class="tl-item"><span class="tl-year">2027</span>CBS plena · fim PIS/Cofins · IPI → zero · IS inicia</div>
+  <div class="tl-item"><span class="tl-year">2029–32</span>Redução gradual ICMS e ISS</div>
+  <div class="tl-item"><span class="tl-year">2033</span>Extinção total ICMS e ISS</div>
+</div>
+<div class="sec-title" id="pegadinhas">Pegadinhas Consolidadas</div>
+<table>
+  <tr><th>Banca</th><th>Afirmativa falsa comum</th><th>Verdade</th></tr>
+  <tr><td><span class="banca-fcc">FCC</span></td><td>IBS incide sobre exportações</td><td>NÃO incide — imunidade constitucional</td></tr>
+  <tr><td><span class="banca-fcc">FCC</span></td><td>CGIBS tem sede na União</td><td>Sede no DF; entidade dos Estados/DF/Municípios</td></tr>
+  <tr><td><span class="banca-fcc">FCC</span></td><td>Art. 225 cria isenção direta</td><td>Depende de lei complementar</td></tr>
+  <tr><td><span class="banca-cespe">CESPE</span></td><td>IBS e CBS têm alíquota única</td><td>CBS = alíquota federal; IBS = cada ente fixa a sua</td></tr>
+  <tr><td><span class="banca-cespe">CESPE</span></td><td>IBS integra sua própria base</td><td>Cobrança "por fora" — não integra</td></tr>
+  <tr><td><span class="banca-cespe">CESPE</span></td><td>Conflitos do CGIBS vão ao STF</td><td>Julgados pelo STJ (art. 105, I, j)</td></tr>
+  <tr><td><span class="banca-cespe">CESPE</span></td><td>CBS é imposto federal</td><td>É contribuição social (art. 195, V)</td></tr>
+  <tr><td><span class="banca-fcc">FCC</span></td><td>IBS é de competência exclusiva dos Estados</td><td>Competência compartilhada: Estados, DF e Municípios</td></tr>
+</table>
+</main>
+</div>
+<script>
+function toggle(head){const body=head.nextElementSibling;const isOpen=body.classList.contains('open');body.classList.toggle('open',!isOpen);head.classList.toggle('open-head',!isOpen);}
+function toggleAll(open){document.querySelectorAll('.art-body').forEach(b=>b.classList.toggle('open',open));document.querySelectorAll('.art-head').forEach(h=>h.classList.toggle('open-head',open));}
+document.querySelector('.art-head').click();
+</script>
+</body>
+</html>
