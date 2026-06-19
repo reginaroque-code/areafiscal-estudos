@@ -4,111 +4,1516 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hub de Estudos · Área Fiscal</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --bg:#F7F7F5; --surface:#FFFFFF; --border:#E4E4E0; --text:#1A1A1A; --muted:#8A8A85; --accent:#C8860A; --accent-lt:#FDF4E3; --theory:#1C5C9E; --summary:#2E7D5B; --map:#7B3FA0; --questions:#B84C1C; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 80px; }
-  header { border-bottom: 1px solid var(--border); padding: 28px 40px 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
-  .header-left { display: flex; flex-direction: column; gap: 4px; }
-  .header-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-  h1 { font-size: 20px; font-weight: 600; letter-spacing: -.02em; color: var(--text); }
-  .header-sub { font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
-  .legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); font-weight: 400; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  main { max-width: 1100px; margin: 0 auto; padding: 40px 40px 0; }
-  .section-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 32px 0 14px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: box-shadow .15s ease, transform .15s ease; }
-  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); transform: translateY(-1px); }
-  .card-header { padding: 16px 18px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-  .card-number { font-size: 10px; font-weight: 500; color: var(--muted); padding-top: 2px; flex-shrink: 0; }
-  .card-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
-  .card-tag { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--accent-lt); color: var(--accent); flex-shrink: 0; }
-  .card-links { padding: 12px 18px 14px; display: flex; flex-direction: column; gap: 7px; }
-  .link-row { display: flex; align-items: center; gap: 8px; }
-  .link-type { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; width: 82px; flex-shrink: 0; color: var(--muted); }
-  .link-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; text-decoration: none; transition: opacity .12s; border: 1px solid transparent; }
-  .link-pill:hover { opacity: .75; }
-  .link-pill.teoria    { background: #EBF2FB; color: var(--theory);    border-color: #C5D8F0; }
-  .link-pill.resumo    { background: #EBF6F2; color: var(--summary);   border-color: #BBE0D0; }
-  .link-pill.mapa      { background: #F3ECF8; color: var(--map);       border-color: #D9BEF0; }
-  .link-pill.questoes  { background: #FBF0EB; color: var(--questions); border-color: #F0CBBB; }
-  .link-pill.empty { background: none; border: 1px dashed var(--border); color: var(--muted); font-weight: 400; font-style: italic; cursor: default; opacity: .6; }
-  .link-pill svg { width: 10px; height: 10px; flex-shrink: 0; }
-  .progress-row { padding: 0 18px 14px; display: flex; align-items: center; gap: 8px; }
-  .progress-bar { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .3s ease; }
-  .progress-pct { font-size: 10px; color: var(--muted); white-space: nowrap; }
-  @media (max-width: 680px) { header { padding: 20px; flex-direction: column; align-items: flex-start; } main { padding: 24px 20px 0; } .legend { display: none; } .grid { grid-template-columns: 1fr; } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0F1117;
+  --surface:   #161B27;
+  --surface2:  #1E2535;
+  --border:    #252D40;
+  --border2:   #2E3A52;
+  --text:      #E8ECF4;
+  --muted:     #5D6A85;
+  --muted2:    #7B8BAA;
+  --gold:      #D4A847;
+  --gold-dim:  #9B7933;
+  --gold-glow: rgba(212,168,71,.12);
+
+  /* disciplina colours */
+  --trib:  #4A9EFF;
+  --cont:  #34C987;
+  --dir:   #A07EE8;
+  --fin:   #FF6B6B;
+  --econ:  #FFB347;
+  --adm:   #47D4C9;
+  --port:  #FF8C69;
+  --mat:   #B5FF7D;
+  --tec:   #7DB8FF;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 28px 40px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.header-left { display: flex; flex-direction: column; gap: 5px; }
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.025em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--muted2);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stats-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+.stats-pill strong { color: var(--gold); font-weight: 600; }
+
+/* ── SEARCH ── */
+.search-wrap {
+  padding: 20px 40px 0;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 9px 14px 9px 36px;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+  font-family: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235D6A85' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { border-color: var(--gold-dim); }
+
+/* ── MAIN ── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 40px 80px;
+}
+
+/* ── SECTION ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  margin-top: 40px;
+}
+
+.section-header:first-child { margin-top: 0; }
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-badge {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--muted2);
+  letter-spacing: .06em;
+}
+
+/* ── DISCIPLINES LIST ── */
+.disciplines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── FOLDER ITEM ── */
+.folder-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.folder-item.open { border-color: var(--border2); }
+.folder-item:hover:not(.open) { border-color: var(--border2); }
+
+.folder-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: var(--surface);
+  user-select: none;
+  transition: background .15s;
+}
+
+.folder-header:hover { background: var(--surface2); }
+.folder-item.open .folder-header { background: var(--surface2); border-bottom: 1px solid var(--border); }
+
+.folder-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.folder-meta { flex: 1; min-width: 0; }
+
+.folder-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-desc {
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.priority-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.pri-max  { background: rgba(212,168,71,.15); color: var(--gold); border-color: rgba(212,168,71,.3); }
+.pri-high { background: rgba(74,158,255,.12); color: #4A9EFF; border-color: rgba(74,158,255,.3); }
+.pri-med  { background: rgba(93,106,133,.15); color: var(--muted2); border-color: var(--border); }
+
+.folder-count {
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 50px;
+  text-align: right;
+}
+
+.folder-chevron {
+  width: 16px; height: 16px;
+  color: var(--muted);
+  transition: transform .22s ease;
+  flex-shrink: 0;
+}
+
+.folder-item.open .folder-chevron { transform: rotate(90deg); }
+
+/* ── TOPICS LIST ── */
+.topics-list {
+  display: none;
+  padding: 8px 0;
+  background: var(--surface);
+}
+
+.folder-item.open .topics-list { display: block; }
+
+/* ── TOPIC ROW ── */
+.topic-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 9px 52px;
+  transition: background .12s;
+  cursor: pointer;
+  position: relative;
+}
+
+.topic-row:hover { background: var(--surface2); }
+
+.topic-icon {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.topic-name {
+  flex: 1;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--muted2);
+  line-height: 1.3;
+}
+
+.topic-row:hover .topic-name { color: var(--text); }
+
+.topic-links {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid;
+  white-space: nowrap;
+  transition: opacity .12s, transform .1s;
+}
+
+.tlink:hover { opacity: .8; transform: translateY(-1px); }
+
+.tlink.teoria   { background: rgba(74,158,255,.12);  color: #4A9EFF; border-color: rgba(74,158,255,.3); }
+.tlink.resumo   { background: rgba(52,201,135,.12);  color: #34C987; border-color: rgba(52,201,135,.3); }
+.tlink.mapa     { background: rgba(160,126,232,.12); color: #A07EE8; border-color: rgba(160,126,232,.3); }
+.tlink.questoes { background: rgba(255,107,107,.12); color: #FF6B6B; border-color: rgba(255,107,107,.3); }
+
+.tlink.empty {
+  background: transparent;
+  border: 1px dashed var(--border2);
+  color: var(--muted);
+  cursor: default;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tlink.empty:hover { opacity: 1; transform: none; }
+
+/* ── PROGRESS mini ── */
+.mini-progress {
+  width: 48px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mini-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--gold);
+  transition: width .4s ease;
+}
+
+/* ── EMPTY STATE ── */
+.topic-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 16px 4px 52px;
+}
+
+/* ── LEGEND ── */
+.legend-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 40px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.leg { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted2); }
+.leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  header { padding: 18px 20px; flex-direction: column; align-items: flex-start; }
+  .search-wrap { padding: 16px 20px 0; }
+  main { padding: 24px 16px 60px; }
+  .legend-bar { padding: 10px 16px; flex-wrap: wrap; gap: 12px; }
+  .topic-row { padding-left: 36px; }
+  .topic-links { flex-wrap: wrap; }
+  .folder-count { display: none; }
+  .folder-right { gap: 6px; }
+}
+
+/* ── SEARCH HIGHLIGHT ── */
+.folder-item.hidden { display: none; }
+.topic-row.hidden { display: none; }
+
+mark { background: rgba(212,168,71,.3); color: var(--text); border-radius: 2px; }
 </style>
 </head>
 <body>
+
 <header>
   <div class="header-left">
-    <span class="header-eyebrow">Área Fiscal · Concursos Públicos</span>
+    <span class="eyebrow">Área Fiscal · Concursos Públicos 2026</span>
     <h1>Hub de Materiais de Estudo</h1>
-    <p class="header-sub">Todos os seus materiais de estudo em um só lugar</p>
+    <p class="subtitle">SEFAZ CE · SEMEF Manaus · Auditor Fiscal</p>
   </div>
-  <div class="legend">
-    <span class="legend-item"><span class="dot" style="background:var(--theory)"></span>Teoria</span>
-    <span class="legend-item"><span class="dot" style="background:var(--summary)"></span>Resumo</span>
-    <span class="legend-item"><span class="dot" style="background:var(--map)"></span>Mapa Mental</span>
-    <span class="legend-item"><span class="dot" style="background:var(--questions)"></span>Questões</span>
+  <div class="header-right">
+    <div class="stats-pill">
+      <strong id="total-topics">0</strong> tópicos
+    </div>
+    <div class="stats-pill">
+      <strong id="total-links">0</strong> materiais
+    </div>
   </div>
 </header>
+
+<div class="legend-bar">
+  <span class="leg"><span class="leg-dot" style="background:#4A9EFF"></span>Teoria</span>
+  <span class="leg"><span class="leg-dot" style="background:#34C987"></span>Resumo</span>
+  <span class="leg"><span class="leg-dot" style="background:#A07EE8"></span>Mapa Mental</span>
+  <span class="leg"><span class="leg-dot" style="background:#FF6B6B"></span>Questões</span>
+</div>
+
+<div class="search-wrap">
+  <input class="search-input" type="search" placeholder="Buscar disciplina ou assunto…" id="searchInput" autocomplete="off">
+</div>
+
 <main>
-<div class="section-label">Conhecimentos Específicos — A01</div>
-<div class="grid">
 
-  <div class="card"><div class="card-header"><span class="card-number">01</span><span class="card-title">Direito Tributário</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">02</span><span class="card-title">Legislação Tributária Estadual — ICMS-CE</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">03</span><span class="card-title">Reforma Tributária — EC 132/2023 + LC 214/2025</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><a href="reforma-tributaria/teoria/ec132-ibs-cbs.html" target="_blank" class="link-pill teoria"><svg viewBox="0 0 12 12" fill="none"><path d="M2 2h8v8H2z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 5h4M4 7h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>EC 132/2023 — IBS e CBS</a></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">04</span><span class="card-title">Contabilidade Geral e Pública</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">05</span><span class="card-title">Contabilidade Avançada e de Custos</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">06</span><span class="card-title">Auditoria</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">07</span><span class="card-title">Finanças Públicas e AFO</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
-  <div class="card"><div class="card-header"><span class="card-number">08</span><span class="card-title">Fluência de Dados / Ciência de Dados</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
-
+<!-- ═══════════════════════════════════════════════
+     SEÇÃO A — CONHECIMENTOS ESPECÍFICOS
+════════════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="section-label">
+    Conhecimentos Específicos
+    <span class="section-badge">SEFAZ CE 2026</span>
+  </span>
+  <div class="section-line"></div>
 </div>
-<div class="section-label" style="margin-top:0">Conhecimentos Gerais</div>
-<div class="grid">
 
-  <div class="card"><div class="card-header"><span class="card-number">09</span><span class="card-title">Direito Constitucional</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+<div class="disciplines-list" id="list-especificos">
 
-  <div class="card"><div class="card-header"><span class="card-number">10</span><span class="card-title">Direito Administrativo</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+  <!-- ───────────────────────────────────────────
+       01 DIREITO TRIBUTÁRIO
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#4A9EFF">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(74,158,255,.15)">⚖️</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Tributário</div>
+        <div class="folder-desc">CTN · Limitações · Obrigação · Crédito · Extinção · Exclusão</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">14 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
 
-  <div class="card"><div class="card-header"><span class="card-number">11</span><span class="card-title">Direito Penal</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">📋</div>
+        <span class="topic-name">Conceito, natureza jurídica e espécies de tributos</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">12</span><span class="card-title">Direito Civil</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🚫</div>
+        <span class="topic-name">Limitações constitucionais ao poder de tributar</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">13</span><span class="card-title">Direito Financeiro</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">⚡</div>
+        <span class="topic-name">Competência tributária — privativa, comum, residual, extraordinária</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">14</span><span class="card-title">Economia</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">📜</div>
+        <span class="topic-name">Legislação tributária — lei, decreto, normas complementares</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">15</span><span class="card-title">Matemática Financeira, Estatística e Raciocínio Lógico</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🎯</div>
+        <span class="topic-name">Obrigação tributária principal e acessória</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">16</span><span class="card-title">Administração Pública e Governança</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">💳</div>
+        <span class="topic-name">Crédito tributário — lançamento e suas modalidades</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
-  <div class="card"><div class="card-header"><span class="card-number">17</span><span class="card-title">Língua Portuguesa</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🕐</div>
+        <span class="topic-name">Decadência e prescrição tributária</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
 
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">✅</div>
+        <span class="topic-name">Extinção do crédito tributário — pagamento, compensação, remissão</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🔒</div>
+        <span class="topic-name">Suspensão e exclusão do crédito tributário</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">👤</div>
+        <span class="topic-name">Sujeição passiva — contribuinte, responsável, substituto</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🔎</div>
+        <span class="topic-name">Fiscalização e dívida ativa — certidões negativas</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">💡</div>
+        <span class="topic-name">Interpretação e integração da lei tributária</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">🛡️</div>
+        <span class="topic-name">Garantias e privilégios do crédito tributário</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(74,158,255,.12)">⚖️</div>
+        <span class="topic-name">Processo administrativo tributário</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       02 LEGISLAÇÃO TRIBUTÁRIA ESTADUAL
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#D4A847">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(212,168,71,.15)">🏛️</div>
+      <div class="folder-meta">
+        <div class="folder-name">Legislação Tributária Estadual — ICMS/CE</div>
+        <div class="folder-desc">RICMS · Lei 12.670/96 · Decreto 24.569/97 · ISS · ITCD · IPVA</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">12 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">📦</div>
+        <span class="topic-name">ICMS — hipótese de incidência, fato gerador, sujeito passivo</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🔢</div>
+        <span class="topic-name">Base de cálculo e alíquotas do ICMS</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🔄</div>
+        <span class="topic-name">Substituição tributária — regressiva e progressiva (ST)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">⛔</div>
+        <span class="topic-name">Isenções, não-incidências e benefícios fiscais (ICMS)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🧾</div>
+        <span class="topic-name">Obrigações acessórias — NF-e, EFD, SPED</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">💸</div>
+        <span class="topic-name">Crédito do ICMS — vedações e estorno</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🚗</div>
+        <span class="topic-name">IPVA — fato gerador, base de cálculo, isenções</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🏠</div>
+        <span class="topic-name">ITCD (ITCMD) — doação e herança</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🔍</div>
+        <span class="topic-name">Processo administrativo tributário estadual (CLICETRIBUTOS)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">🏗️</div>
+        <span class="topic-name">ICMS diferencial de alíquotas — DIFAL (EC 87/2015)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">📊</div>
+        <span class="topic-name">Regime Especial de Tributação e Simples Nacional (ME/EPP)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(212,168,71,.12)">⚠️</div>
+        <span class="topic-name">Infrações e penalidades — Auto de Infração e Notificação Fiscal</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       03 REFORMA TRIBUTÁRIA
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FF6B6B">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,107,107,.15)">🔥</div>
+      <div class="folder-meta">
+        <div class="folder-name">Reforma Tributária — EC 132/2023 + LC 214/2025</div>
+        <div class="folder-desc">IBS · CBS · IS · Split Payment · Transição até 2033</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">8 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🏛️</div>
+        <span class="topic-name">EC 132/2023 — estrutura, objetivos e princípios da reforma</span>
+        <div class="topic-links">
+          <a href="reforma-tributaria/teoria/ec132-ibs-cbs.html" target="_blank" class="tlink teoria">Teoria</a>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🔵</div>
+        <span class="topic-name">IBS — Imposto sobre Bens e Serviços (substitui ICMS/ISS)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🟡</div>
+        <span class="topic-name">CBS — Contribuição sobre Bens e Serviços (substitui PIS/COFINS)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🟢</div>
+        <span class="topic-name">IS — Imposto Seletivo (produto e serviços específicos)</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🔄</div>
+        <span class="topic-name">LC 214/2025 — regulamentação, alíquotas e exceções</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">💳</div>
+        <span class="topic-name">Split Payment — modelo de recolhimento na fonte</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">📅</div>
+        <span class="topic-name">Período de transição (2026–2033) e regimes específicos</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,107,107,.12)">🏦</div>
+        <span class="topic-name">Comitê Gestor do IBS — governança e repartição</span>
+        <div class="topic-links">
+          <span class="tlink empty">Teoria</span>
+          <span class="tlink empty">Resumo</span>
+          <span class="tlink empty">Questões</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       04 CONTABILIDADE GERAL
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#34C987">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(52,201,135,.15)">📊</div>
+      <div class="folder-meta">
+        <div class="folder-name">Contabilidade Geral e Pública</div>
+        <div class="folder-desc">Balanços · NBC TG · CFC · Lei 4.320 · PCASP</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">11 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📐</div>
+        <span class="topic-name">Princípios e postulados contábeis — NBC TG Estrutura Conceitual</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🗂️</div>
+        <span class="topic-name">Plano de contas — ativo, passivo, PL, receitas e despesas</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📝</div>
+        <span class="topic-name">Lançamentos contábeis — fórmulas e regras de débito/crédito</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📈</div>
+        <span class="topic-name">Demonstrações contábeis — BP, DRE, DMPL, DFC, NE</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🏗️</div>
+        <span class="topic-name">Imobilizado e intangível — reconhecimento e depreciação</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🔁</div>
+        <span class="topic-name">Receitas — reconhecimento e IFRS 15 / CPC 47</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🏛️</div>
+        <span class="topic-name">Contabilidade pública — Lei 4.320/64 e Portaria SOF</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📋</div>
+        <span class="topic-name">PCASP — Plano de Contas Aplicado ao Setor Público</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">💰</div>
+        <span class="topic-name">Orçamento público — créditos, execução e LOA/LDO/PPA</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🔎</div>
+        <span class="topic-name">Análise de balanços — índices de liquidez, rentabilidade e endividamento</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🌐</div>
+        <span class="topic-name">NBCASP — Normas Brasileiras de Contabilidade Aplicadas ao Setor Público</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       05 CONTABILIDADE DE CUSTOS
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#34C987">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(52,201,135,.15)">🏭</div>
+      <div class="folder-meta">
+        <div class="folder-name">Contabilidade de Custos e Avançada</div>
+        <div class="folder-desc">Custeio por Absorção · Variável · ABC · Tributação do Lucro</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">8 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🔢</div>
+        <span class="topic-name">Conceitos fundamentais — custos, despesas, gastos, perdas</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📦</div>
+        <span class="topic-name">Custeio por absorção — rateio e DRE gerencial</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📉</div>
+        <span class="topic-name">Custeio variável — margem de contribuição e ponto de equilíbrio</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🎯</div>
+        <span class="topic-name">Custeio baseado em atividades (ABC)</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🏢</div>
+        <span class="topic-name">Tributação do lucro — IRPJ, CSLL, Lucro Real e Presumido</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">📊</div>
+        <span class="topic-name">Planejamento tributário — estratégias lícitas de elisão fiscal</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🔄</div>
+        <span class="topic-name">Consolidação de demonstrações contábeis (CPC 36)</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(52,201,135,.12)">🌍</div>
+        <span class="topic-name">Instrumentos financeiros — CPC 38/39/40 e IFRS 9</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       06 AUDITORIA
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#A07EE8">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(160,126,232,.15)">🔍</div>
+      <div class="folder-meta">
+        <div class="folder-name">Auditoria</div>
+        <div class="folder-desc">NBC TA · Risco · Controle Interno · Auditoria Fiscal · TCU/TCE</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">9 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">📋</div>
+        <span class="topic-name">Conceito, objetivo e tipos de auditoria — interna e externa</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">⚠️</div>
+        <span class="topic-name">Risco de auditoria — inerente, controle e detecção</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">🛡️</div>
+        <span class="topic-name">Controles internos — COSO, estrutura e avaliação</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">🔬</div>
+        <span class="topic-name">Procedimentos de auditoria — evidências e amostragem</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">📝</div>
+        <span class="topic-name">Planejamento e papéis de trabalho</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">🏛️</div>
+        <span class="topic-name">Auditoria governamental — TCU, TCE-CE e CGU</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">🔎</div>
+        <span class="topic-name">Auditoria fiscal — procedimentos de fiscalização tributária</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">📊</div>
+        <span class="topic-name">NBC TA — normas de auditoria independente (CFC)</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(160,126,232,.12)">✅</div>
+        <span class="topic-name">Relatório de auditoria — parecer, ressalva, abstenção e adverso</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       07 FINANÇAS PÚBLICAS / AFO
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FFB347">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,179,71,.15)">💰</div>
+      <div class="folder-meta">
+        <div class="folder-name">Finanças Públicas e Administração Financeira e Orçamentária</div>
+        <div class="folder-desc">LRF · Ciclo Orçamentário · Princípios · Dívida Pública · FCC</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">9 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">📅</div>
+        <span class="topic-name">Ciclo orçamentário — PPA, LDO, LOA e execução</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">📜</div>
+        <span class="topic-name">Princípios orçamentários — CF/88 e exceções</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">🔩</div>
+        <span class="topic-name">Créditos adicionais — suplementares, especiais e extraordinários</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">⚖️</div>
+        <span class="topic-name">Lei de Responsabilidade Fiscal — LC 101/2000</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">🏦</div>
+        <span class="topic-name">Dívida pública — consolidada, mobiliária e fundada</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">📊</div>
+        <span class="topic-name">Receita pública — classificação, estágios e fontes</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">💸</div>
+        <span class="topic-name">Despesa pública — estágios, empenho, liquidação e pagamento</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">🧮</div>
+        <span class="topic-name">Orçamento por desempenho e programas — indicadores</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(255,179,71,.12)">🌐</div>
+        <span class="topic-name">Federalismo fiscal — repartição de receitas tributárias</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       08 FLUÊNCIA DE DADOS
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#7DB8FF">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(125,184,255,.15)">🖥️</div>
+      <div class="folder-meta">
+        <div class="folder-name">Fluência de Dados / Tecnologia da Informação</div>
+        <div class="folder-desc">BD · SGBD · SQL · SPED · Segurança · Data Warehouse</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-med">Média</span>
+        <span class="folder-count">8 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">🗄️</div>
+        <span class="topic-name">Banco de dados — SGBD, ACID, modelo relacional</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">📝</div>
+        <span class="topic-name">SQL — DDL, DML, DQL, consultas e joins</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">📊</div>
+        <span class="topic-name">Data Warehouse, BI e OLAP — modelagem dimensional</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">🧾</div>
+        <span class="topic-name">SPED — NF-e, CT-e, ECD, ECF e EFD ICMS/IPI</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">🔒</div>
+        <span class="topic-name">Segurança da informação — CIA, criptografia, LGPD</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">🌐</div>
+        <span class="topic-name">Redes de computadores — TCP/IP, protocolos, firewall</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">🤖</div>
+        <span class="topic-name">Inteligência Artificial e Machine Learning — conceitos básicos</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+      <div class="topic-row">
+        <div class="topic-icon" style="background:rgba(125,184,255,.12)">📱</div>
+        <span class="topic-name">Governo digital — plataformas fiscais e transformação digital</span>
+        <div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /list-especificos -->
+
+<!-- ═══════════════════════════════════════════════
+     SEÇÃO B — CONHECIMENTOS GERAIS
+════════════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="section-label">Conhecimentos Gerais</span>
+  <div class="section-line"></div>
 </div>
+
+<div class="disciplines-list" id="list-gerais">
+
+  <!-- ───────────────────────────────────────────
+       09 DIREITO CONSTITUCIONAL
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#A07EE8">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(160,126,232,.15)">🏛️</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Constitucional</div>
+        <div class="folder-desc">CF/88 · Direitos Fundamentais · Organização do Estado · STF</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">10 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">📜</div><span class="topic-name">Teoria geral da Constituição — poder constituinte e reforma</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🤝</div><span class="topic-name">Direitos e garantias fundamentais — art. 5º CF/88</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🗺️</div><span class="topic-name">Organização do Estado — União, Estados, DF e Municípios</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">⚡</div><span class="topic-name">Poderes da República — Legislativo, Executivo e Judiciário</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">⚖️</div><span class="topic-name">Controle de constitucionalidade — difuso e concentrado (STF)</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🏛️</div><span class="topic-name">Ordem econômica e financeira — princípios constitucionais</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🔱</div><span class="topic-name">Sistema tributário nacional na CF/88 — art. 145 a 162</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🛡️</div><span class="topic-name">Administração pública — art. 37 CF/88 e princípios LIMPE</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">📋</div><span class="topic-name">Remédios constitucionais — MS, MI, HC, HD, AP</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🌐</div><span class="topic-name">Interpretação constitucional — métodos e princípios</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       10 DIREITO ADMINISTRATIVO
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#A07EE8">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(160,126,232,.15)">🏢</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Administrativo</div>
+        <div class="folder-desc">Atos · Poderes · Licitação · Contratos · Agentes Públicos · Lei 14.133</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-max">Essencial</span>
+        <span class="folder-count">10 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">📄</div><span class="topic-name">Atos administrativos — elementos, atributos e vícios</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">⚡</div><span class="topic-name">Poderes administrativos — vinculado, discricionário, hierárquico, disciplinar</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🏢</div><span class="topic-name">Organização administrativa — órgãos, autarquias, fundações, EP</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">👔</div><span class="topic-name">Agentes públicos — cargos, funções e regime jurídico</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">📋</div><span class="topic-name">Processo administrativo — Lei 9.784/99 e contraditório</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🛒</div><span class="topic-name">Licitações e contratos — Lei 14.133/2021</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🏠</div><span class="topic-name">Bens públicos — uso, alienação e domínio</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">⚖️</div><span class="topic-name">Responsabilidade civil do Estado — objetiva e subjetiva</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">🔍</div><span class="topic-name">Controle da administração — interno, externo e judicial</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(160,126,232,.12)">📛</div><span class="topic-name">Improbidade administrativa — Lei 8.429/92 e alterações (Lei 14.230)</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       11 DIREITO PENAL TRIBUTÁRIO
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FF6B6B">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,107,107,.15)">⚠️</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Penal</div>
+        <div class="folder-desc">Lei 8.137/90 · Crimes contra a Ordem Tributária · Lavagem</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">6 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">🚨</div><span class="topic-name">Crimes contra a ordem tributária — Lei 8.137/90</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">💰</div><span class="topic-name">Lavagem de dinheiro — Lei 9.613/98 e alterações</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">📋</div><span class="topic-name">Sonegação fiscal — conceito, extinção da punibilidade e pagamento</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">🏢</div><span class="topic-name">Crimes contra a Administração Pública — CP art. 312 a 359</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">🔍</div><span class="topic-name">Corrupção ativa e passiva — elementos do tipo</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,107,107,.12)">🌐</div><span class="topic-name">Combate à corrupção — ENCCLA, COAF, acordos internacionais</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       12 DIREITO CIVIL
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#47D4C9">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(71,212,201,.15)">📚</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Civil e Empresarial</div>
+        <div class="folder-desc">Obrigações · Contratos · Prescrição · Sociedades · Lei 6.404/76</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-med">Média</span>
+        <span class="folder-count">6 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">🤝</div><span class="topic-name">Obrigações civis — modalidades, extinção e adimplemento</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">📝</div><span class="topic-name">Contratos — formação, vícios e extinção</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">🕐</div><span class="topic-name">Prescrição e decadência civil — prazos e impedimentos</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">🏢</div><span class="topic-name">Sociedade anônima — Lei 6.404/76, órgãos e responsabilidades</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">🧑‍💼</div><span class="topic-name">Empresário individual e EIRELI — registro e responsabilidade</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(71,212,201,.12)">⚠️</div><span class="topic-name">Títulos de crédito — cheque, nota promissória, duplicata</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       13 DIREITO FINANCEIRO
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FFB347">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,179,71,.15)">📊</div>
+      <div class="folder-meta">
+        <div class="folder-name">Direito Financeiro</div>
+        <div class="folder-desc">Atividade Financeira · Receitas · Despesas · Lei 4.320 · LRF</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">5 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">💡</div><span class="topic-name">Atividade financeira do Estado — conceito e instrumentos</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">📈</div><span class="topic-name">Receitas públicas originárias e derivadas</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">📉</div><span class="topic-name">Despesas públicas — classificações e controle</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">🏦</div><span class="topic-name">Crédito público — operações e endividamento</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">⚖️</div><span class="topic-name">Responsabilidade fiscal — limites de gasto e transparência</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       14 ECONOMIA
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FFB347">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,179,71,.15)">📈</div>
+      <div class="folder-meta">
+        <div class="folder-name">Economia</div>
+        <div class="folder-desc">Micro · Macro · Política Fiscal · PIB · Inflação · Câmbio</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">7 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">📊</div><span class="topic-name">Microeconomia — oferta, demanda, elasticidades e equilíbrio</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">🌍</div><span class="topic-name">Macroeconomia — PIB, desemprego, inflação e crescimento</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">💰</div><span class="topic-name">Política fiscal — receitas, gastos e multiplicador</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">🏦</div><span class="topic-name">Política monetária — Selic, COPOM, meios de pagamento</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">🌐</div><span class="topic-name">Comércio exterior — câmbio, balanço de pagamentos</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">📉</div><span class="topic-name">Falhas de mercado — externalidades, bens públicos, monopólio</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,179,71,.12)">🔢</div><span class="topic-name">Índices econômicos — IPCA, IGPM, INPC e deflação</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       15 MATEMÁTICA FINANCEIRA / ESTATÍSTICA
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#B5FF7D">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(181,255,125,.15)">🧮</div>
+      <div class="folder-meta">
+        <div class="folder-name">Matemática Financeira, Estatística e Raciocínio Lógico</div>
+        <div class="folder-desc">Juros · SAC/PRICE · Estatística Descritiva · Probabilidade · Lógica</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-high">Alta</span>
+        <span class="folder-count">7 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">💹</div><span class="topic-name">Juros simples e compostos — taxas e equivalência</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">📅</div><span class="topic-name">Séries de pagamentos — anuidades, VP e VF</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">🏠</div><span class="topic-name">Amortização — Tabelas SAC e PRICE</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">📊</div><span class="topic-name">Estatística descritiva — médias, medidas de dispersão</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">🎲</div><span class="topic-name">Probabilidade — conceitos, combinatória e distribuições</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">🧩</div><span class="topic-name">Raciocínio lógico — proposições, silogismos e tabelas-verdade</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(181,255,125,.12)">🔢</div><span class="topic-name">Análise combinatória — permutação, combinação e arranjo</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────
+       16 LÍNGUA PORTUGUESA
+  ─────────────────────────────────────────────── -->
+  <div class="folder-item" data-color="#FF8C69">
+    <div class="folder-header" onclick="toggle(this)">
+      <div class="folder-icon" style="background:rgba(255,140,105,.15)">📖</div>
+      <div class="folder-meta">
+        <div class="folder-name">Língua Portuguesa</div>
+        <div class="folder-desc">Interpretação · Gramática · Ortografia · Concordância · Redação</div>
+      </div>
+      <div class="folder-right">
+        <span class="priority-tag pri-med">Média</span>
+        <span class="folder-count">7 tópicos</span>
+        <svg class="folder-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <div class="topics-list">
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">📝</div><span class="topic-name">Interpretação e compreensão de textos — FCC</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">✍️</div><span class="topic-name">Ortografia e acentuação — Acordo Ortográfico 2009</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">🔤</div><span class="topic-name">Morfologia — classes de palavras e flexões</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">🏗️</div><span class="topic-name">Sintaxe — análise de períodos e orações</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">🤝</div><span class="topic-name">Concordância nominal e verbal</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">↔️</div><span class="topic-name">Regência nominal e verbal — crase</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+      <div class="topic-row"><div class="topic-icon" style="background:rgba(255,140,105,.12)">📮</div><span class="topic-name">Redação oficial — correspondência, atos e documentos (PROAD)</span><div class="topic-links"><span class="tlink empty">Teoria</span><span class="tlink empty">Resumo</span><span class="tlink empty">Questões</span></div></div>
+    </div>
+  </div>
+
+</div><!-- /list-gerais -->
 </main>
+
 <script>
-  document.querySelectorAll('.card').forEach(card => {
-    const pills = card.querySelectorAll('.link-pill:not(.empty)');
-    const fill  = card.querySelector('.progress-fill');
-    const pct   = card.querySelector('.progress-pct');
-    if (fill && pct) { const n = pills.length; fill.style.width = (n * 25) + '%'; pct.textContent = n + ' / 4'; }
+/* ── TOGGLE FOLDER ── */
+function toggle(headerEl) {
+  const item = headerEl.closest('.folder-item');
+  item.classList.toggle('open');
+}
+
+/* ── STATS ── */
+function updateStats() {
+  const topics = document.querySelectorAll('.topic-row:not(.hidden)').length;
+  const links  = document.querySelectorAll('.tlink:not(.empty)').length;
+  document.getElementById('total-topics').textContent = topics;
+  document.getElementById('total-links').textContent  = links;
+}
+
+/* ── SEARCH ── */
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+
+  document.querySelectorAll('.folder-item').forEach(folder => {
+    const folderName = folder.querySelector('.folder-name').textContent.toLowerCase();
+    const folderDesc = folder.querySelector('.folder-desc').textContent.toLowerCase();
+    const rows       = folder.querySelectorAll('.topic-row');
+
+    if (!q) {
+      folder.classList.remove('hidden');
+      rows.forEach(r => r.classList.remove('hidden'));
+      return;
+    }
+
+    let anyVisible = false;
+    rows.forEach(row => {
+      const text = row.querySelector('.topic-name').textContent.toLowerCase();
+      if (text.includes(q) || folderName.includes(q) || folderDesc.includes(q)) {
+        row.classList.remove('hidden');
+        anyVisible = true;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+
+    if (anyVisible || folderName.includes(q) || folderDesc.includes(q)) {
+      folder.classList.remove('hidden');
+      if (q) folder.classList.add('open');
+    } else {
+      folder.classList.add('hidden');
+    }
   });
+});
+
+/* ── INIT ── */
+updateStats();
 </script>
 </body>
 </html>
