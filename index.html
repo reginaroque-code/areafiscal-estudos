@@ -7,267 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:        #F7F7F5;
-    --surface:   #FFFFFF;
-    --border:    #E4E4E0;
-    --text:      #1A1A1A;
-    --muted:     #8A8A85;
-    --accent:    #C8860A;
-    --accent-lt: #FDF4E3;
-    --theory:    #1C5C9E;
-    --summary:   #2E7D5B;
-    --map:       #7B3FA0;
-    --questions: #B84C1C;
-  }
-
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 80px;
-  }
-
-  /* ── HEADER ── */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 28px 40px 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    z-index: 10;
-  }
-
+  :root { --bg:#F7F7F5; --surface:#FFFFFF; --border:#E4E4E0; --text:#1A1A1A; --muted:#8A8A85; --accent:#C8860A; --accent-lt:#FDF4E3; --theory:#1C5C9E; --summary:#2E7D5B; --map:#7B3FA0; --questions:#B84C1C; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0 0 80px; }
+  header { border-bottom: 1px solid var(--border); padding: 28px 40px 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
   .header-left { display: flex; flex-direction: column; gap: 4px; }
-
-  .header-eyebrow {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  h1 {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -.02em;
-    color: var(--text);
-  }
-
-  .header-sub {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 400;
-    margin-top: 2px;
-  }
-
-  .legend {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* ── MAIN ── */
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 40px 0;
-  }
-
-  /* ── SECTION ── */
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 32px 0 14px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-
-  /* ── GRID ── */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 12px;
-  }
-
-  /* ── CARD ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow .15s ease, transform .15s ease;
-  }
-
-  .card:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,.07);
-    transform: translateY(-1px);
-  }
-
-  .card-header {
-    padding: 16px 18px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  .card-number {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    padding-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.3;
-    flex: 1;
-  }
-
-  .card-tag {
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    padding: 3px 7px;
-    border-radius: 3px;
-    background: var(--accent-lt);
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  /* ── LINKS ── */
-  .card-links {
-    padding: 12px 18px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .link-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .link-type {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    width: 82px;
-    flex-shrink: 0;
-    color: var(--muted);
-  }
-
-  .link-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: opacity .12s;
-    border: 1px solid transparent;
-  }
-
+  .header-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: 20px; font-weight: 600; letter-spacing: -.02em; color: var(--text); }
+  .header-sub { font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); font-weight: 400; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 40px 0; }
+  .section-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 32px 0 14px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: box-shadow .15s ease, transform .15s ease; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); transform: translateY(-1px); }
+  .card-header { padding: 16px 18px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .card-number { font-size: 10px; font-weight: 500; color: var(--muted); padding-top: 2px; flex-shrink: 0; }
+  .card-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
+  .card-tag { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 3px 7px; border-radius: 3px; background: var(--accent-lt); color: var(--accent); flex-shrink: 0; }
+  .card-links { padding: 12px 18px 14px; display: flex; flex-direction: column; gap: 7px; }
+  .link-row { display: flex; align-items: center; gap: 8px; }
+  .link-type { font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; width: 82px; flex-shrink: 0; color: var(--muted); }
+  .link-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; text-decoration: none; transition: opacity .12s; border: 1px solid transparent; }
   .link-pill:hover { opacity: .75; }
-
   .link-pill.teoria    { background: #EBF2FB; color: var(--theory);    border-color: #C5D8F0; }
   .link-pill.resumo    { background: #EBF6F2; color: var(--summary);   border-color: #BBE0D0; }
   .link-pill.mapa      { background: #F3ECF8; color: var(--map);       border-color: #D9BEF0; }
   .link-pill.questoes  { background: #FBF0EB; color: var(--questions); border-color: #F0CBBB; }
-
-  .link-pill.empty {
-    background: none;
-    border: 1px dashed var(--border);
-    color: var(--muted);
-    font-weight: 400;
-    font-style: italic;
-    cursor: default;
-    opacity: .6;
-  }
-
-  .link-pill svg {
-    width: 10px; height: 10px;
-    flex-shrink: 0;
-  }
-
-  /* ── PROGRESS BAR ── */
-  .progress-row {
-    padding: 0 18px 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .progress-bar {
-    flex: 1;
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width .3s ease;
-  }
-
-  .progress-pct {
-    font-size: 10px;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 680px) {
-    header { padding: 20px; flex-direction: column; align-items: flex-start; }
-    main { padding: 24px 20px 0; }
-    .legend { display: none; }
-    .grid { grid-template-columns: 1fr; }
-  }
+  .link-pill.empty { background: none; border: 1px dashed var(--border); color: var(--muted); font-weight: 400; font-style: italic; cursor: default; opacity: .6; }
+  .link-pill svg { width: 10px; height: 10px; flex-shrink: 0; }
+  .progress-row { padding: 0 18px 14px; display: flex; align-items: center; gap: 8px; }
+  .progress-bar { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .3s ease; }
+  .progress-pct { font-size: 10px; color: var(--muted); white-space: nowrap; }
+  @media (max-width: 680px) { header { padding: 20px; flex-direction: column; align-items: flex-start; } main { padding: 24px 20px 0; } .legend { display: none; } .grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-left">
     <span class="header-eyebrow">Área Fiscal · Concursos Públicos</span>
@@ -281,604 +58,56 @@
     <span class="legend-item"><span class="dot" style="background:var(--questions)"></span>Questões</span>
   </div>
 </header>
-
 <main>
-
-<!-- ═══════════════════════════════════════════
-     CONHECIMENTOS ESPECÍFICOS
-════════════════════════════════════════════ -->
 <div class="section-label">Conhecimentos Específicos — A01</div>
 <div class="grid">
 
-  <!-- 01 Direito Tributário -->
-  <div class="card" data-links="1">
-    <div class="card-header">
-      <span class="card-number">01</span>
-      <span class="card-title">Direito Tributário</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">01</span><span class="card-title">Direito Tributário</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 02 ICMS-CE -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">02</span>
-      <span class="card-title">Legislação Tributária Estadual — ICMS-CE</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">02</span><span class="card-title">Legislação Tributária Estadual — ICMS-CE</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 03 Reforma Tributária -->
-  <div class="card" data-links="1">
-    <div class="card-header">
-      <span class="card-number">03</span>
-      <span class="card-title">Reforma Tributária — EC 132/2023 + LC 214/2025</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <a href="reforma-tributaria/teoria/ec132-ibs-cbs.html" target="_blank" class="link-pill teoria">
-          <svg viewBox="0 0 12 12" fill="none"><path d="M2 2h8v8H2z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 5h4M4 7h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-          EC 132/2023 — IBS e CBS
-        </a>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">03</span><span class="card-title">Reforma Tributária — EC 132/2023 + LC 214/2025</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><a href="reforma-tributaria/teoria/ec132-ibs-cbs.html" target="_blank" class="link-pill teoria"><svg viewBox="0 0 12 12" fill="none"><path d="M2 2h8v8H2z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 5h4M4 7h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>EC 132/2023 — IBS e CBS</a></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 04 Contabilidade Geral -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">04</span>
-      <span class="card-title">Contabilidade Geral e Pública</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">04</span><span class="card-title">Contabilidade Geral e Pública</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 05 Contabilidade Avançada e de Custos -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">05</span>
-      <span class="card-title">Contabilidade Avançada e de Custos</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">05</span><span class="card-title">Contabilidade Avançada e de Custos</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 06 Auditoria -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">06</span>
-      <span class="card-title">Auditoria</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">06</span><span class="card-title">Auditoria</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 07 Finanças Públicas / AFO -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">07</span>
-      <span class="card-title">Finanças Públicas e AFO</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">07</span><span class="card-title">Finanças Públicas e AFO</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 08 Fluência de Dados -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">08</span>
-      <span class="card-title">Fluência de Dados / Ciência de Dados</span>
-      <span class="card-tag">⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">08</span><span class="card-title">Fluência de Dados / Ciência de Dados</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-</div><!-- /grid específicos -->
-
-<!-- ═══════════════════════════════════════════
-     CONHECIMENTOS GERAIS
-════════════════════════════════════════════ -->
+</div>
 <div class="section-label" style="margin-top:0">Conhecimentos Gerais</div>
 <div class="grid">
 
-  <!-- 09 Direito Constitucional -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">09</span>
-      <span class="card-title">Direito Constitucional</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">09</span><span class="card-title">Direito Constitucional</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 10 Direito Administrativo -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">10</span>
-      <span class="card-title">Direito Administrativo</span>
-      <span class="card-tag">⭐⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">10</span><span class="card-title">Direito Administrativo</span><span class="card-tag">⭐⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 11 Direito Penal -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">11</span>
-      <span class="card-title">Direito Penal</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">11</span><span class="card-title">Direito Penal</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 12 Direito Civil -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">12</span>
-      <span class="card-title">Direito Civil</span>
-      <span class="card-tag">⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">12</span><span class="card-title">Direito Civil</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 13 Direito Financeiro -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">13</span>
-      <span class="card-title">Direito Financeiro</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">13</span><span class="card-title">Direito Financeiro</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 14 Economia -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">14</span>
-      <span class="card-title">Economia</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">14</span><span class="card-title">Economia</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 15 Matemática Financeira / Estatística -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">15</span>
-      <span class="card-title">Matemática Financeira, Estatística e Raciocínio Lógico</span>
-      <span class="card-tag">⭐⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">15</span><span class="card-title">Matemática Financeira, Estatística e Raciocínio Lógico</span><span class="card-tag">⭐⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 16 Administração Pública -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">16</span>
-      <span class="card-title">Administração Pública e Governança</span>
-      <span class="card-tag">⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">16</span><span class="card-title">Administração Pública e Governança</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-  <!-- 17 Língua Portuguesa -->
-  <div class="card" data-links="0">
-    <div class="card-header">
-      <span class="card-number">17</span>
-      <span class="card-title">Língua Portuguesa</span>
-      <span class="card-tag">⭐⭐⭐</span>
-    </div>
-    <div class="card-links">
-      <div class="link-row">
-        <span class="link-type">Teoria</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Resumo</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Mapa Mental</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-      <div class="link-row">
-        <span class="link-type">Questões</span>
-        <span class="link-pill empty">em breve</span>
-      </div>
-    </div>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      <span class="progress-pct">0 / 4</span>
-    </div>
-  </div>
+  <div class="card"><div class="card-header"><span class="card-number">17</span><span class="card-title">Língua Portuguesa</span><span class="card-tag">⭐⭐⭐</span></div><div class="card-links"><div class="link-row"><span class="link-type">Teoria</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Resumo</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Mapa Mental</span><span class="link-pill empty">em breve</span></div><div class="link-row"><span class="link-type">Questões</span><span class="link-pill empty">em breve</span></div></div><div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-pct">0 / 4</span></div></div>
 
-</div><!-- /grid gerais -->
-
+</div>
 </main>
-
-<!-- ══ COMO ADICIONAR LINKS ══════════════════════════
-  Para adicionar um link:
-  1. Localize o card da disciplina (pelo número)
-  2. Substitua a <span class="link-pill empty">em breve</span>
-     pelo código abaixo, ajustando href e texto:
-
-  Teoria:
-  <a href="SEU_ARQUIVO.html" target="_blank" class="link-pill teoria">
-    <svg viewBox="0 0 12 12" fill="none"><path d="M2 2h8v8H2z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 5h4M4 7h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    Teoria
-  </a>
-
-  Resumo:
-  <a href="SEU_ARQUIVO.html" target="_blank" class="link-pill resumo">
-    <svg viewBox="0 0 12 12" fill="none"><path d="M2 2h8v8H2z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
-    Resumo
-  </a>
-
-  Mapa Mental:
-  <a href="SEU_ARQUIVO.html" target="_blank" class="link-pill mapa">
-    <svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="2" fill="currentColor"/><circle cx="2" cy="2" r="1.2" fill="currentColor"/><line x1="2" y1="2" x2="6" y2="6" stroke="currentColor" stroke-width="1"/></svg>
-    Mapa Mental
-  </a>
-
-  Questões:
-  <a href="SEU_ARQUIVO.html" target="_blank" class="link-pill questoes">
-    <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 4a1.5 1.5 0 0 1 0 3" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="9" r=".7" fill="currentColor"/></svg>
-    Questões
-  </a>
-
-  3. Atualize a barra de progresso no <div class="progress-row">:
-     0% = 0 links, 25% = 1, 50% = 2, 75% = 3, 100% = 4
-     <div class="progress-fill" style="width:25%"></div>
-     e o texto: 1 / 4
-════════════════════════════════════════════════════ -->
-
 <script>
-  // Atualiza barras de progresso automaticamente ao carregar
   document.querySelectorAll('.card').forEach(card => {
     const pills = card.querySelectorAll('.link-pill:not(.empty)');
     const fill  = card.querySelector('.progress-fill');
     const pct   = card.querySelector('.progress-pct');
-    if (fill && pct) {
-      const n = pills.length;
-      fill.style.width = (n * 25) + '%';
-      pct.textContent  = n + ' / 4';
-    }
+    if (fill && pct) { const n = pills.length; fill.style.width = (n * 25) + '%'; pct.textContent = n + ' / 4'; }
   });
 </script>
 </body>
